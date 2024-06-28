@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Entidades.Zapato>
+
+@{
+    ViewData["Title"] = "Registros_Zapatos";
+}
+
+<h1>Registros De Zapatos</h1>
+
+<p>
+    <a asp-action="Registrar_Zapato">Registrar Zapato</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("NOMBRE")
+            </th>
+            <th>
+                @Html.DisplayName("PRECIO")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+                <td>
+                    <div class="d-flex flex-wrap">
+                        <div class="btn-group">
+                            <a asp-action="Editar_Zapato" asp-route-id="@item.Id_Zapato" class="btn btn-primary rounded">Editar</a>
+                            <a asp-action="Detalle_Zapato" asp-route-id="@item.Id_Zapato" class="btn btn-secondary rounded">Detalles</a>
+                            <a asp-action="Eliminar_Zapato" asp-route-id="@item.Id_Zapato" class="btn btn-danger rounded">Eliminar</a>
+                        </div>
+                        <style>
+                            .btn-group {
+                                display: flex;
+                                gap: 5px;
+                            }
+
+                            .btn {
+                                flex: 1;
+                                border-radius: 5px;
+                            }
+                        </style>
+                    </div>
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
