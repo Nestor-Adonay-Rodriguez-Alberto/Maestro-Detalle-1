@@ -22,5 +22,12 @@ namespace Entidades
         // Tabla DetalleCompra Asociada A Esta:
         public virtual List<DetalleCompra> Lista_DetalleCompra { get; set; }
 
+        
+
+        // CONSTRUCTOR:
+        public Zapato()
+        {
+            Lista_DetalleCompra = new List<DetalleCompra>();
+        }
     }
 }

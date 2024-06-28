@@ -11,7 +11,7 @@ namespace Entidades
     public class DetalleCompra
     {
         // ATRIBUTOS:
-
+        [Key]
         public int Id_DetalleCompra { get; set; }
 
         public int Cantidad { get; set; }

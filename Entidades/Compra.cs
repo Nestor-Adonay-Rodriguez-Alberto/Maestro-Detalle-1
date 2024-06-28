@@ -22,7 +22,7 @@ namespace Entidades
         // CONSTRUCTOR:
         public Compra()
         {
-            Lista_Compras = new List<Compra>();
+            Lista_DetalleCompra = new List<DetalleCompra>();
         }
     }
 }
