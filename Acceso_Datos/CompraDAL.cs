@@ -50,9 +50,8 @@ namespace Acceso_Datos
         // Lista De La Tabla Zapato Para ViewData:
         public async Task<List<Zapato>> Lista_Zapatos()
         {
-            List<Zapato> Objetos_Obtenidos = await _MyDBcontext.Zapatos.ToListAsync();
+            return await _MyDBcontext.Zapatos.ToListAsync();
 
-            return Objetos_Obtenidos;
         }
 
 

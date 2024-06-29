@@ -20,7 +20,7 @@
             url: '@Url.Action("Eliminar_Detalle")',
             data: $("#frmCompra").serialize(),
             dataType: "html",
-            type: 'POST',
+            type: 'POST', 
             success: function (textHtml) {
                 $("#divDetalleCompra").html(textHtml);
             }

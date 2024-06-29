@@ -13,17 +13,17 @@ namespace Entidades
         public DateTime FechaRealizada { get; set; }
 
         public int Correlativo { get; set; }
-        [Required]
+
         public double Total { get; set; }
 
         // Tabla DetalleCompra Asociada A Esta:
-        public virtual List<DetalleCompra> Lista_DetalleCompra { get; set; }
+        public virtual IList<DetalleCompra> Lista_DetalleCompra { get; set; }
 
 
         // CONSTRUCTOR:
         public Compra()
         {
-            Lista_DetalleCompra = new List<DetalleCompra>();
+            //Lista_DetalleCompra = new List<DetalleCompra>();
         }
     }
 }

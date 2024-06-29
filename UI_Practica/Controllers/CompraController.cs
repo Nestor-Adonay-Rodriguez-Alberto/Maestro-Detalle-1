@@ -16,7 +16,7 @@ namespace UI_Practica.Controllers
         {
             _CompraBL = compraBL;
         } 
-
+         
 
 
         // Manda Todos Los Registros De La Tabla:
@@ -31,6 +31,8 @@ namespace UI_Practica.Controllers
         public async Task<IActionResult> Detalle_Compra(int id)
         {
             Compra Objeto_Obtenido = await _CompraBL.Obtener_PorId(new Compra() { Id_Compra = id });
+
+            ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
             ViewBag.Accion = "Detalle_Compra";
             return View(Objeto_Obtenido);
@@ -64,10 +66,8 @@ namespace UI_Practica.Controllers
             Objeto_Inicio.Lista_DetalleCompra.Add(new DetalleCompra { Cantidad = 1, Precio_Producto = 0 });
 
 
-            List<Zapato> Lista_Zapatos = await _CompraBL.Lista_Zapatos();
-            ViewData["Lista_Zapatos"] = new SelectList(Lista_Zapatos, "Id_Zapato", "Nombre");
-
-
+            ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
+            
             ViewBag.Accion = "Registrar_Compra";
             return View(Objeto_Inicio);
         }
@@ -96,8 +96,9 @@ namespace UI_Practica.Controllers
                 //}
 
 
-                List<Zapato> Lista_Zapatos = await _CompraBL.Lista_Zapatos();
-                ViewData["Lista_Zapatos"] = new SelectList(Lista_Zapatos, "Id_Zapato", "Nombre");
+                List<Zapato> Lista_Zapatoss = await _CompraBL.Lista_Zapatos();
+                int n= Lista_Zapatoss.Count();
+                ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
 
                 ViewBag.Accion = "Registrar_Compra";
@@ -119,8 +120,7 @@ namespace UI_Practica.Controllers
         {
             Compra Objeto_Obtenido = await _CompraBL.Obtener_PorId(new Compra() { Id_Compra = id });
 
-            List<Zapato> Lista_Zapatos = await _CompraBL.Lista_Zapatos();
-            ViewData["Lista_Zapatos"] = new SelectList(Lista_Zapatos, "Id_Zapato", "Nombre");
+            ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
             ViewBag.Accion = "Editar_Compra";
             return View(Objeto_Obtenido);
@@ -170,6 +170,8 @@ namespace UI_Practica.Controllers
         {
             Compra Objeto_Obtenido = await _CompraBL.Obtener_PorId(new Compra() { Id_Compra = id });
 
+            ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
+
             ViewBag.Accion = "Eliminar_Compra";
             return View(Objeto_Obtenido);
         }
@@ -201,8 +203,7 @@ namespace UI_Practica.Controllers
                 Precio_Producto = 0
             });
 
-            List<Zapato> Lista_Zapatos = await _CompraBL.Lista_Zapatos();
-            ViewData["Lista_Zapatos"] = new SelectList(Lista_Zapatos, "Id_Zapato", "Nombre");
+            ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
             ViewBag.Accion = accion;
             return View(accion, compra);
@@ -222,8 +223,7 @@ namespace UI_Practica.Controllers
                 compra.Lista_DetalleCompra.RemoveAt(index);
             }
 
-            List<Zapato> Lista_Zapatos = await _CompraBL.Lista_Zapatos();
-            ViewData["Lista_Zapatos"] = new SelectList(Lista_Zapatos, "Id_Zapato", "Nombre");
+            ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
             ViewBag.Accion = accion;
             return View(accion, compra);

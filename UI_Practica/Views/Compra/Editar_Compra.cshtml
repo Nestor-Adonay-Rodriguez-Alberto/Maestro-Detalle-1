@@ -8,40 +8,39 @@
 
 <h4>Compra</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Editar_Compra">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id_Compra" class="control-label"></label>
-                <input asp-for="Id_Compra" class="form-control" />
-                <span asp-validation-for="Id_Compra" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaRealizada" class="control-label"></label>
-                <input asp-for="FechaRealizada" class="form-control" />
-                <span asp-validation-for="FechaRealizada" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Correlativo" class="control-label"></label>
-                <input asp-for="Correlativo" class="form-control" />
-                <span asp-validation-for="Correlativo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="Editar_Compra">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="FechaRealizada" class="control-label"></label>
+        <input asp-for="FechaRealizada" class="form-control" />
+        <span asp-validation-for="FechaRealizada" class="text-danger"></span>
     </div>
-</div>
+    <div class="form-group">
+        <label asp-for="Correlativo" class="control-label"></label>
+        <input asp-for="Correlativo" class="form-control" />
+        <span asp-validation-for="Correlativo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Total" class="control-label"></label>
+        <input asp-for="Total" class="form-control" />
+        <span asp-validation-for="Total" class="text-danger"></span>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <!-- Vista Parcial-->
+    <div class="col-md-12" style="margin-top:10px;" id="divDetalleCompra">
+        @await Html.PartialAsync("_Detalle_Compra", Model.Lista_DetalleCompra)
+    </div>
+    <!-- BOTONES -->
+    <div class="row">
+
+        <div class="form-group">
+            <input type="submit" value="GUARDAR" class="btn btn-primary" />
+            <a asp-action="Registros_Compras" class="btn btn-secondary">CANCELAR</a>
+        </div>
+
+    </div>
+</form>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
