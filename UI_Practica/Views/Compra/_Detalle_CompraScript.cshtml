@@ -1,0 +1,29 @@
+﻿<script>
+
+    // Invocara Al Metodo Del Controllador
+    function crearDetalles() {
+        $.ajax({
+            url: '@Url.Action("Agregar_Detalle")',
+            data: $("#frmCompra").serialize(),
+            dataType: "html",
+            type: 'POST',
+            success: function (textHtml) {
+                $("#divDetalleCompra").html(textHtml);
+            }
+        });
+    }
+
+    // Invocara Al Metodo Del Controllador
+    function eliminarDetalles(index) {
+        $("#txtIndexDetalle").val(index);
+        $.ajax({
+            url: '@Url.Action("Eliminar_Detalle")',
+            data: $("#frmCompra").serialize(),
+            dataType: "html",
+            type: 'POST',
+            success: function (textHtml) {
+                $("#divDetalleCompra").html(textHtml);
+            }
+        });
+    }
+</script>

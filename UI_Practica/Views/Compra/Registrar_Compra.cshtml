@@ -1,0 +1,57 @@
+﻿@model Entidades.Compra
+
+@{
+    ViewData["Title"] = "Registrar_Compra";
+}
+
+<h1>Registrar_Compra</h1>
+
+<h4>Compra</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Registrar_Compra" class="card" id="frmCompra">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FechaRealizada" class="control-label"></label>
+                <input asp-for="FechaRealizada" class="form-control" />
+                <span asp-validation-for="FechaRealizada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correlativo" class="control-label"></label>
+                <input readonly asp-for="Correlativo" class="form-control" />
+                <span asp-validation-for="Correlativo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input readonly asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+
+            <!-- Vista Parcial-->
+            <div class="col-md-12" style="margin-top:10px;" id="divDetalleCompra">
+                @await Html.PartialAsync("_Detalle_Compra", Model.Lista_DetalleCompra)
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Registros_Compras" class="btn btn-secondary">CANCELAR</a>
+            </div>
+            <input type="hidden" name="index" id="txtIndexDetalle" />
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    @{
+        await Html.RenderPartialAsync("_Detalle_CompraScript");
+    }
+}

@@ -14,6 +14,7 @@ namespace Acceso_Datos
 
             // Registrando Las Clases:
             services.AddScoped<ZapatoDAL>();
+            services.AddScoped<CompraDAL>();
 
             return services;
         }

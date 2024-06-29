@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Entidades.Compra>
+
+@{
+    ViewData["Title"] = "Registros_Compras";
+}
+
+<h1>Registros_Compras</h1>
+
+<p>
+    <a asp-action="Registrar_Compra">Registrar Compra</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("FECHA REALIZADA")
+            </th>
+            <th>
+                @Html.DisplayName("CORRELATIVO")
+            </th>
+            <th>
+                @Html.DisplayName("TOTAL")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRealizada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correlativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+                <td>
+                    <div class="d-flex flex-wrap">
+                        <div class="btn-group">
+                            <a asp-action="Editar_Compra" asp-route-id="@item.Id_Compra" class="btn btn-primary rounded">Editar</a>
+                            <a asp-action="Detalle_Compra" asp-route-id="@item.Id_Compra" class="btn btn-secondary rounded">Detalles</a>
+                            <a asp-action="Eliminar_Compra" asp-route-id="@item.Id_Compra" class="btn btn-danger rounded">Eliminar</a>
+                        </div>
+                        <style>
+                            .btn-group {
+                                display: flex;
+                                gap: 5px;
+                            }
+
+                            .btn {
+                                flex: 1;
+                                border-radius: 5px;
+                            }
+                        </style>
+                    </div>
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
