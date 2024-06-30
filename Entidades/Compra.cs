@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entidades
 {
@@ -14,6 +15,7 @@ namespace Entidades
 
         public int Correlativo { get; set; }
 
+        [Column(TypeName = "decimal(10,2)")]
         public double Total { get; set; }
 
         // Tabla DetalleCompra Asociada A Esta:

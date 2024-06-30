@@ -16,6 +16,7 @@ namespace Entidades
 
         public int Cantidad { get; set; }
 
+        [Column(TypeName = "decimal(10,2)")]
         public double Precio_Producto { get; set; }
 
 

@@ -149,8 +149,7 @@ namespace UI_Practica.Controllers
                 }
 
 
-                List<Zapato> Lista_Zapatos = await _CompraBL.Lista_Zapatos();
-                ViewData["Lista_Zapatos"] = new SelectList(Lista_Zapatos, "Id_Zapato", "Nombre");
+                ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
 
                 ViewBag.Accion = "Editar_Compra";
@@ -194,6 +193,7 @@ namespace UI_Practica.Controllers
         //         METODOS PARA AGREGAR O ELIMINAR DETALLES A LA FACTURA
         // **********************************************************************
 
+        [HttpPost]
         public async Task<IActionResult> Agregar_Detalle(Compra compra, string accion)
         {
             //Agregamos Detalle A La Lista:
@@ -206,17 +206,17 @@ namespace UI_Practica.Controllers
             ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
             ViewBag.Accion = accion;
-            return View(accion, compra);
+            return PartialView("_Detalle_Compra", compra.Lista_DetalleCompra);
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> Eliminar_Detalle(Compra compra, int index, string accion)
         {
             DetalleCompra Objeto_Obtenido = compra.Lista_DetalleCompra[index];
 
             if (accion == "Editar_Compra" && Objeto_Obtenido.Id_DetalleCompra > 0)
             {
-                Objeto_Obtenido.Id_DetalleCompra = Objeto_Obtenido.IdCompraEnDetalle * -1;
+                Objeto_Obtenido.Id_DetalleCompra = Objeto_Obtenido.Id_DetalleCompra * -1;
             }
             else
             {
@@ -226,7 +226,7 @@ namespace UI_Practica.Controllers
             ViewData["Lista_Zapatos"] = await _CompraBL.Lista_Zapatos();
 
             ViewBag.Accion = accion;
-            return View(accion, compra);
+            return PartialView("_Detalle_Compra", compra.Lista_DetalleCompra);
         }
     }
 }
